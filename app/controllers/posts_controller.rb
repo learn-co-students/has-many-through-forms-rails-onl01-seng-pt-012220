@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def show
-    @post = Post.find(params[:id])
+    @post = set_post
   end
 
   def index
@@ -17,6 +17,9 @@ class PostsController < ApplicationController
   end
 
   private
+  def set_post
+    Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :content, category_ids:[], categories_attributes: [:name])
